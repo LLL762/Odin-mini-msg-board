@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <p>works!</p>
+
+    <form action="<%= formUri %>" method="post">
+      <label for="form-user"></label>
+      <input type="text" name="msg-user" id="msg-user" required />
+      <label for="msgText"></label>
+      <textarea
+        name="msgText"
+        id="msg-text"
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
+      <button type="submit">submit</button>
+    </form>
   </body>
 </html>

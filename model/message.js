@@ -10,9 +10,9 @@ const Message = (() => {
 
   const MsgModel = mongoose.model("message", schema);
 
-  const getMsgModel = () => MsgModel;
+  const getModel = () => MsgModel;
 
-  return { getMsgModel };
+  return { getModel };
 })();
 
 module.exports = { Message };

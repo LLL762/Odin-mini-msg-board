@@ -1,7 +1,7 @@
 const { Message } = require("../model/message");
 
 const MessageRepo = (() => {
-  const msgModel = Message.getMsgModel();
+  const msgModel = Message.getModel();
 
   const getAllMsg = () => {
     return msgModel.find({});
