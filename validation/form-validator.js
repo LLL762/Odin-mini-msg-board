@@ -16,14 +16,15 @@ const FormValidator = () => {
     },
   };
 
-  const keys = ["user", "password"].sort();
+  const keys = ["user", "text"].sort();
 
   const validateBodyKeys = (body) => {
     if (!body) {
       return false;
     }
 
-    const bodyKeys = Object.keys(body);
+    const bodyKeys = Object.keys(body).sort();
+    console.log(bodyKeys);
 
     if (keys.length != bodyKeys.length) {
       return false;
