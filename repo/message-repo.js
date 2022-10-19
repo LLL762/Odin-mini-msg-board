@@ -14,7 +14,7 @@ const MessageRepo = () => {
   };
 
   const deleteById = (id) => {
-    msgModel.deleteOne({ _id: id }, (err) => console.log(err));
+    return msgModel.deleteOne({ _id: id });
   };
 
   return { getAllMsg, createMsg, deleteById };
