@@ -5,20 +5,34 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <p>works!</p>
+    <a href="/">Go to home</a>
 
     <form action="<%= formUri %>" method="post">
       <label for="form-user"></label>
-      <input type="text" name="msg-user" id="msg-user" required />
+      <input
+        value="<%= message?.user %>"
+        type="text"
+        name="<%= msgUser %>"
+        id="msg-user"
+        required
+      />
       <label for="msgText"></label>
       <textarea
-        name="msgText"
+        name="<%= msgText %>"
         id="msg-text"
         cols="30"
         rows="10"
         required
-      ></textarea>
+      >
+<%= message?.text %></textarea
+      >
       <button type="submit">submit</button>
     </form>
+
+    <ul>
+      <% for(var i=0; i<errors?.length ; i++) {%>
+        <li><%= errors[i].msg %></li>
+     <% } %>
+    </ul>
   </body>
 </html>

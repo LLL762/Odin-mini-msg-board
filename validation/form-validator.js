@@ -1,14 +1,24 @@
+const { Message } = require("../model/message");
+
 const FormValidator = () => {
-  const shema = {
-    msgText: {
+  const schema = {
+    text: {
       isLength: {
-        errorMessage: "at least 7 characters",
-        options: { min: 7 },
+        errorMessage: "message must have between 7 and 255 characters",
+        options: { min: 7, max: 255 },
+      },
+    },
+    user: {
+      isLength: {
+        errorMessage: "user must have between 2 and 15 characters",
+        options: { min: 2, max: 15 },
       },
     },
   };
 
-  const getSchema = () => shema;
+  const keys = ["user", "password"];
+
+  const getSchema = () => schema;
 
   return { getSchema };
 };

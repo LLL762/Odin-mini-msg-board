@@ -3,16 +3,26 @@ const Schema = mongoose.Schema;
 
 const Message = (() => {
   const schema = new Schema({
-    text: String,
-    user: String,
-    added: Date,
+    text: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: String,
+      required: true,
+    },
+    added: {
+      type: Date,
+      default: Date.now,
+    },
   });
 
   const MsgModel = mongoose.model("message", schema);
 
   const getModel = () => MsgModel;
+  const getSchema = () => schema;
 
-  return { getModel };
+  return { getModel, getSchema };
 })();
 
 module.exports = { Message };

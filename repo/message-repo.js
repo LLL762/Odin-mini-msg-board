@@ -1,6 +1,6 @@
 const { Message } = require("../model/message");
 
-const MessageRepo = (() => {
+const MessageRepo = () => {
   const msgModel = Message.getModel();
 
   const getAllMsg = () => {
@@ -14,6 +14,6 @@ const MessageRepo = (() => {
   };
 
   return { getAllMsg, createMsg };
-})();
+};
 
-module.exports = MessageRepo;
+module.exports = { MessageRepo };
