@@ -21,18 +21,30 @@ const FormController = (() => {
     uri,
     checkSchema(validator.getSchema()),
     async (req, res, next) => {
-      const errors = validationResult(req);
-      const body = req.body;
-      const msg = new msgModel(body);
+      try {
+        const errors = validationResult(req);
+        const body = req.body;
+        const msg = new msgModel(body);
 
-      if (!errors.isEmpty()) {
-        FormView(msg, errors.array(0)).render(res);
+        if (!validator.validateBodyKeys(body)) {
+          res.status(400);
+          res.send("no!");
+          return;
+        }
 
-        return;
+        if (!errors.isEmpty()) {
+          res.status(400);
+          FormView(msg, errors.array(0)).render(res);
+          return;
+        }
+
+        messageRepo.createMsg(msg);
+        res.status(201);
+        res.redirect("/");
+      } catch (err) {
+        res.status(500);
+        res.render("500");
       }
-
-      messageRepo.createMsg(msg);
-      res.redirect("/");
     }
   );
 

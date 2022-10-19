@@ -16,11 +16,29 @@ const FormValidator = () => {
     },
   };
 
-  const keys = ["user", "password"];
+  const keys = ["user", "password"].sort();
+
+  const validateBodyKeys = (body) => {
+    if (!body) {
+      return false;
+    }
+
+    const bodyKeys = Object.keys(body);
+
+    if (keys.length != bodyKeys.length) {
+      return false;
+    }
+    for (const [i, key] of keys.entries()) {
+      if (key !== bodyKeys[i]) {
+        return false;
+      }
+    }
+    return true;
+  };
 
   const getSchema = () => schema;
 
-  return { getSchema };
+  return { getSchema, validateBodyKeys };
 };
 
 module.exports = { FormValidator };
