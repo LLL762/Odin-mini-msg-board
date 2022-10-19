@@ -16,7 +16,10 @@
     <p><%= messages[i].text %></p>
     <p>by : <%= messages[i].user %></p>
     <p>at : <%= messages[i].added %></p>
-
+    <button id="<%= messages[i]._id %>" class="remove-msg" type="button">
+      delete
+    </button>
     <% } %>
   </body>
+  <script async defer src="/javascripts/index.js"></script>
 </html>

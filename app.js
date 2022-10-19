@@ -7,12 +7,19 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
-const { Message } = require("./model/message");
 const { MongooseConfigs } = require("./configs/mongoose-configs");
-const MessageRepo = require("./repo/message-repo");
+
 const FormController = require("./routes/new");
+const { FormValidator } = require("./validation/form-validator");
+const { MessageRepo } = require("./repo/message-repo");
+const { MessagesController } = require("./routes/messages");
 
 var app = express();
+
+const formValidator = FormValidator();
+const messageRepo = MessageRepo();
+const formController = FormController(formValidator, messageRepo);
+const messagesController = MessagesController(messageRepo);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -27,7 +34,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-app.use("", FormController.getRouter());
+app.use("", formController.getRouter());
+app.use("", messagesController.getRouter());
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

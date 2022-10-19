@@ -1,9 +1,11 @@
 const RouteConfigs = (() => {
   const newUri = "/new";
+  const messagesUri = "/messages";
 
   const getNewUri = () => newUri;
+  const getMessagesUri = () => messagesUri;
 
-  return { getNewUri };
+  return { getNewUri, getMessagesUri };
 })();
 
 module.exports = { RouteConfigs };

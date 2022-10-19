@@ -13,7 +13,11 @@ const MessageRepo = () => {
     });
   };
 
-  return { getAllMsg, createMsg };
+  const deleteById = (id) => {
+    msgModel.deleteOne({ _id: id }, (err) => console.log(err));
+  };
+
+  return { getAllMsg, createMsg, deleteById };
 };
 
 module.exports = { MessageRepo };
